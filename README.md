@@ -110,5 +110,88 @@ Here are the following definitions of each variable in the above example:
 
 - `token`: The alphanumeric Secure URL Token pertaining to the specific Source. It can be found in the [imgix web dashboard](https://webapp.imgix.com/source).
 - `path`: The path of component of the final imgix URL including the leading slash, e.g. `/users/1.png` or `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`.
-- `query`: The query string of the imgix URL parameters, leading with the `?`, e.g. `?w=400&h=300`.
+- `query`: The query string of the imgix URL parameters, leading with the `?`, e.g. `?w=400&h=300`. If there are no query parameters, this should be left out of the signature base.
 
+### Examples
+
+The following are a few examples for securing URLs, which library authors should use as a spot check:
+
+#### Simple Paths
+
+Given:
+
+- Path: `/users/1.png`
+- Secure URL Token: `FOO123bar`
+- No imgix parameters
+
+The resulting signature should be:
+
+```
+6797c24146142d5b40bde3141fd3600c
+```
+
+This makes the final URL:
+
+```
+https://my-social-network.imgix.net/users/1.png?s=6797c24146142d5b40bde3141fd3600c
+```
+
+#### Fully-Qualified URLs
+
+Given:
+
+- Path: `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`
+- Secure URL Token: `FOO123bar`
+- No imgix parameters
+
+The resulting signature should be:
+
+```
+493a52f008c91416351f8b33d4883135
+```
+
+This makes the final URL:
+
+```
+https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png?s=493a52f008c91416351f8b33d4883135
+```
+
+#### Simple Paths with imgix URL API parameters
+
+Given:
+
+- Path: `/users/1.png`
+- Secure URL Token: `FOO123bar`
+- The following imgix parameters: `w=400` and `h=300`
+
+THe resulting signature should be:
+
+```
+d687aadb76459935ca2e69afc9d8a9c3
+```
+
+This makes the final URL:
+
+```
+https://my-social-network.imgix.net/users/1.png?w=400&h=300&s=d687aadb76459935ca2e69afc9d8a9c3
+```
+
+#### Fully-Qualified URLs with imgix URL API parameters
+
+Given:
+
+- Path: `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`
+- Secure URL Token: `FOO123bar`
+- The following imgix parameters: `w=400` and `h=300`
+
+The resulting signature should be:
+
+```
+61ea1cc7add87653bb0695fe25f2b534
+```
+
+This makes the final URL:
+
+```
+https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png?w=400&h=300&s=61ea1cc7add87653bb0695fe25f2b534
+```
