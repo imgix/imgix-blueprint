@@ -18,7 +18,7 @@ If it is idiomatic for the language, we recommend naming each library `"imgix-" 
 
 The simplest transformation for a library should be able map a path to an imgix source.
 
-Given the path:
+Given the origin path:
 
 ```
 /users/1.png
@@ -47,7 +47,7 @@ If you have an imgix library that you would like to see included, please [open a
 
 ## Protocols
 
-imgix recommends using the HTTP over TLS (https:) in all cases. All imgix sources are HTTPS-enabled and performant.
+imgix recommends using the HTTP over TLS (https:) in all cases. All imgix sources are HTTPS-enabled.
 
 Given recommendations by Paul Irish and Ilya Grigorik, please do not use HTTP or protocol-relative URLs.
 
@@ -58,7 +58,7 @@ See:
 
 ## Web Proxy Sources
 
-Web Proxy Sources are very powerful parts of the imgix URL API. While Amazon S3 and Web Folder sources all assume the same origin. Web Proxy Sources are able to proxy any publicly-accessible URL. Because of this, imgix requires that all Web Proxy URLs be signed.
+Web Proxy Sources are very powerful parts of the imgix URL API. While Amazon S3 and Web Folder sources all assume the same origin, Web Proxy Sources are able to proxy any publicly-accessible URL. Because of this, imgix requires that all Web Proxy URLs be signed.
 
 This is also a point that can trip many library authors up. The URL-to-be-proxied is the path component of an imgix URL. While
 
@@ -74,7 +74,7 @@ Thus, imgix recommends URI-encoding the URL-to-be-proxied like so:
 https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png
 ```
 
-**Note**: Web Proxy URLs will also need to be signed. Please see the Securing URLs section below.
+**Note**: Web Proxy URLs will also need to be signed. Please see the [Securing URLs section below](#securing-urls).
 
 ## URL parameters
 
@@ -94,11 +94,11 @@ https://my-social-network.imgix.net/users/1.png?w=400&h=300
 
 ## Securing URLs
 
-imgix recommends securing all URLs, although it is only required for Amazon S3 and Web Folder Sources. Securing URLs prevents others from using one of your Sources maliciously, say to use your imgix Source as a CDN for a separate site.
+imgix recommends securing all URLs, although it is not required for Amazon S3 and Web Folder Sources. Securing URLs prevents others from using one of your Sources maliciously, say to use your imgix Source as a CDN for a separate site.
 
 imgix URL signatures are represented by the special `s` parameter, and are a checksum of data pertaining to the URL itself and the imgix Source.
 
-This parameter is generate as follows in Ruby:
+This parameter is generated as follows in Ruby:
 
 ```ruby
 signature_base = token + path
@@ -108,7 +108,7 @@ Digest::MD5.hexdigest(signature_base)
 
 Here are the following definitions of each variable in the above example:
 
-- `token`: The Secure URL Token pertaining to the specific Source. It can be found in the [imgix web dashboard](https://webapp.imgix.com/source).
-- `path`: The path of component of the final imgix URL including the leading slash, e.g. `/users/1.png` or `http%3A%2F%2Favatars.com%2Fjohn-smith.png`.
+- `token`: The alphanumeric Secure URL Token pertaining to the specific Source. It can be found in the [imgix web dashboard](https://webapp.imgix.com/source).
+- `path`: The path of component of the final imgix URL including the leading slash, e.g. `/users/1.png` or `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`.
 - `query`: The query string of the imgix URL parameters, leading with the `?`, e.g. `?w=400&h=300`.
 
