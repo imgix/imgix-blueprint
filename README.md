@@ -96,7 +96,7 @@ https://my-social-network.imgix.net/users/1.png?w=400&h=300
 
 imgix recommends securing all URLs, although it is not required for Amazon S3 and Web Folder Sources. Securing URLs prevents others from using one of your Sources maliciously, say to use your imgix Source as a CDN for a separate site.
 
-imgix URL signatures are represented by the special `s` parameter, and are a checksum of data pertaining to the URL itself and the imgix Source.
+imgix URL signatures are represented by the special `s` parameter, and are a checksum of data pertaining to the URL itself and the imgix Source. In a secured imgix URL, the `s` parameter **must** be the last parameter.
 
 This parameter is generated as follows in Ruby:
 
