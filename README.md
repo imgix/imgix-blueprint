@@ -8,6 +8,12 @@ This document is meant to serve as a resource for implementing native libraries 
 
 This document will not cover framework-level integrations in different languages. This document is primarily concerned with building imgix API URLs reliably.
 
+imgix cares very much about providing first-class, idiomatic support for as many languages as possible. If you create a library for a language that is not supported, please [get in touch](mailto:support@imgix.com) if you would like it to be supported officially.
+
+## Naming
+
+If it is idiomatic for the language, we recommend naming each library `"imgix-" + language_name`, e.g. `imgix-rb` or `imgix-php`.
+
 ## Hello, World!
 
 The simplest transformation for a library should be able map a path to an imgix source.
@@ -23,6 +29,21 @@ A given imgix library should be able to turn that into:
 ```
 https://my-social-network.imgix.net/users/1.png
 ```
+
+## Existing Libraries
+
+Official libraries exist in the following languages:
+
+- [Ruby](https://github.com/imgix/imgix-rb)
+- [Python](https://github.com/imgix/imgix-python)
+- [Java](https://github.com/imgix/imgix-java)
+- [PHP](https://github.com/imgix/imgix-php)
+
+Unofficial libraries are available in the following languages:
+
+- [Objective-C/Swift](https://github.com/soffes/imgix-objc)
+
+If you have an imgix library that you would like to see included, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
 
 ## Protocols
 
