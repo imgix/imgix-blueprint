@@ -68,7 +68,7 @@ Web Proxy Sources are very powerful parts of the imgix URL API. While Amazon S3 
 This is also a point that can trip many library authors up. The URL-to-be-proxied is the path component of an imgix URL. While
 
 ```
-https://my-social-network.imgix.net/http://avatars.com/john-smith.png
+https://my-social-network.imgix.net/http://avatars.com/john-smith.png # Don't do this
 ```
 
 will work with imgix, imgix recommends that you **do not** merely append the origin URL like this. This method will begin causing issues if and when the origin URL has query parameters of its own.
