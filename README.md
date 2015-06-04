@@ -42,6 +42,7 @@ Official libraries exist in the following languages:
 Unofficial libraries are available in the following languages:
 
 - [Objective-C/Swift](https://github.com/soffes/imgix-objc)
+- [Go](https://github.com/parkr/imgix-go)
 
 If you have an imgix library that you would like to see included, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
 
