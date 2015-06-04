@@ -202,3 +202,9 @@ This makes the final URL:
 ```
 https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png?w=400&h=300&s=61ea1cc7add87653bb0695fe25f2b534
 ```
+
+Or if your language likes to alphabetize parameters:
+
+```
+https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png?h=300&w=400&s=a201fe1a3caef4944dcb40f6ce99e746
+```
