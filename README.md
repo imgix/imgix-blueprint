@@ -14,6 +14,10 @@ imgix cares very much about providing first-class, idiomatic support for as many
 
 If it is idiomatic for the language, we recommend naming each library `"imgix-" + language_name`, e.g. `imgix-rb` or `imgix-php`.
 
+## Versioning
+
+All imgix library must following [Semantic Versioning](http://semver.org/).
+
 ## Hello, World!
 
 The simplest transformation for a library should be able map a path to an imgix source.
