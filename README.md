@@ -177,6 +177,12 @@ This makes the final URL:
 https://my-social-network.imgix.net/users/1.png?w=400&h=300&s=c7b86f666a832434dd38577e38cf86d1
 ```
 
+Or if your library likes to alphabetize the params:
+
+```
+https://my-social-network.imgix.net/users/1.png?h=300&w=400&s=1a4e48641614d1109c6a7af51be23d18
+```
+
 #### Fully-Qualified URLs with imgix URL API parameters
 
 Given:
