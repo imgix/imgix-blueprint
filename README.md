@@ -145,6 +145,7 @@ https://my-social-network.imgix.net/users/1.png?s=6797c24146142d5b40bde3141fd360
 
 Given:
 
+- Origin URL: `http://avatars.com/john-smith.png`
 - Path: `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`
 - Secure URL Token: `FOO123bar`
 - No imgix parameters
