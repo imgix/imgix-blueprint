@@ -34,15 +34,15 @@ https://my-social-network.imgix.net/users/1.png
 
 Official libraries exist in the following languages:
 
-- [Ruby](https://github.com/imgix/imgix-rb)
-- [Python](https://github.com/imgix/imgix-python)
 - [Java](https://github.com/imgix/imgix-java)
 - [PHP](https://github.com/imgix/imgix-php)
+- [Python](https://github.com/imgix/imgix-python)
+- [Ruby](https://github.com/imgix/imgix-rb)
 
 Unofficial libraries are available in the following languages:
 
-- [Objective-C/Swift](https://github.com/soffes/imgix-objc)
 - [Go](https://github.com/parkr/imgix-go)
+- [Objective-C/Swift](https://github.com/soffes/imgix-objc)
 
 If you have an imgix library that you would like to see included, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
 
