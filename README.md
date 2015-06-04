@@ -16,7 +16,7 @@ If it is idiomatic for the language, we recommend naming each library `"imgix-" 
 
 ## Versioning
 
-All imgix library must following [Semantic Versioning](http://semver.org/).
+All imgix libraries must following [Semantic Versioning](http://semver.org/).
 
 ## Hello, World!
 
