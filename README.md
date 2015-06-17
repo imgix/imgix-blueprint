@@ -170,7 +170,7 @@ Given:
 - Secure URL Token: `FOO123bar`
 - The following imgix parameters: `w=400` and `h=300`
 
-THe resulting signature should be:
+The resulting signature should be:
 
 ```
 d687aadb76459935ca2e69afc9d8a9c3
