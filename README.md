@@ -10,6 +10,24 @@ This document will not cover framework-level integrations in different languages
 
 imgix cares very much about providing first-class, idiomatic support for as many languages as possible. If you create a library for a language that is not supported, please [get in touch](mailto:support@imgix.com) if you would like it to be supported officially.
 
+## Existing Libraries
+
+Official libraries exist in the following languages:
+
+- [Java](https://github.com/imgix/imgix-java)
+- [NodeJS/io.js](https://github.com/imgix/imgix-core-js)
+- [PHP](https://github.com/imgix/imgix-php)
+- [Python](https://github.com/imgix/imgix-python)
+- [Ruby](https://github.com/imgix/imgix-rb)
+
+Unofficial libraries are available in the following languages:
+
+- [C#](https://github.com/raynjamin/Imgix-CSharp)
+- [Go](https://github.com/parkr/imgix-go)
+- [Objective-C/Swift](https://github.com/soffes/imgix-objc)
+
+If you have an imgix library that you would like to see included, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
+
 ## Naming
 
 If it is idiomatic for the language, we recommend naming each library `"imgix-" + language_name`, e.g. `imgix-rb` or `imgix-php`.
@@ -33,24 +51,6 @@ A given imgix library should be able to turn that into:
 ```
 https://my-social-network.imgix.net/users/1.png
 ```
-
-## Existing Libraries
-
-Official libraries exist in the following languages:
-
-- [Java](https://github.com/imgix/imgix-java)
-- [NodeJS/io.js](https://github.com/imgix/imgix-core-js)
-- [PHP](https://github.com/imgix/imgix-php)
-- [Python](https://github.com/imgix/imgix-python)
-- [Ruby](https://github.com/imgix/imgix-rb)
-
-Unofficial libraries are available in the following languages:
-
-- [C#](https://github.com/raynjamin/Imgix-CSharp)
-- [Go](https://github.com/parkr/imgix-go)
-- [Objective-C/Swift](https://github.com/soffes/imgix-objc)
-
-If you have an imgix library that you would like to see included, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
 
 ## Protocols
 
