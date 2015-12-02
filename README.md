@@ -175,7 +175,7 @@ Given:
 The resulting signature should be:
 
 ```
-d687aadb76459935ca2e69afc9d8a9c3
+c7b86f666a832434dd38577e38cf86d1
 ```
 
 This makes the final URL:
