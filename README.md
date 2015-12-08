@@ -15,7 +15,7 @@ imgix cares very much about providing first-class, idiomatic support for as many
 Official libraries exist in the following languages:
 
 - [Java](https://github.com/imgix/imgix-java)
-- [NodeJS/io.js](https://github.com/imgix/imgix-core-js)
+- [NodeJS](https://github.com/imgix/imgix-core-js)
 - [PHP](https://github.com/imgix/imgix-php)
 - [Python](https://github.com/imgix/imgix-python)
 - [Ruby](https://github.com/imgix/imgix-rb)
@@ -24,7 +24,8 @@ Unofficial libraries are available in the following languages:
 
 - [C#](https://github.com/raynjamin/Imgix-CSharp)
 - [Go](https://github.com/parkr/imgix-go)
-- [Objective-C/Swift](https://github.com/soffes/imgix-objc)
+- [Objective-C](https://github.com/soffes/imgix-objc)
+- [Swift](https://www.github.com/hodinkee/iris)
 
 If you have an imgix library that you would like to see included, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
 
