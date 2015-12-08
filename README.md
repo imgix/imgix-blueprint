@@ -27,7 +27,7 @@ Unofficial libraries are available in the following languages:
 - [Objective-C](https://github.com/soffes/imgix-objc)
 - [Swift](https://www.github.com/hodinkee/iris)
 
-If you have an imgix library that you would like to see included, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
+There is a complete list including framework libraries in [the imgix documentation](https://www.imgix.com/docs/libraries). If you have an imgix library that you would like to see included, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
 
 ## Naming
 
