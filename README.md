@@ -26,6 +26,7 @@ Unofficial libraries are available in the following languages:
 - [Go](https://github.com/parkr/imgix-go)
 - [Objective-C](https://github.com/soffes/imgix-objc)
 - [Swift](https://www.github.com/hodinkee/iris)
+- [Elixir](https://github.com/ianwalter/imgex)
 
 If you have an imgix library that you would like included here, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
 
