@@ -123,6 +123,38 @@ Here are the following definitions of each variable in the above example:
 - `path`: The path of component of the final imgix URL including the leading slash, e.g. `/users/1.png` or `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`.  Special characters in the path (for example UTF-8 encoded codepoints) must remain percent encoded.
 - `query`: The query string of the imgix URL parameters, leading with the `?`, e.g. `?w=400&h=300`. If there are no query parameters, this should be left out of the signature base.
 
+## Base64 encode problematic parameters
+
+When dealing with complex inputs, encoding can be difficult to deal with and implement. Because of this, imgix recommends using the Base64 variants of parameters. Every parameter in imgix has a Base64 alias, which allows the values to be encoded using the 'base64url' encoding with URL and filename safe alphabet ([RFC 4648](https://en.wikipedia.org/wiki/Base64#RFC_4648)). These parameters are keyed by appending `64` to the end of the parameter name. Thus `txt` becomes `txt64`.
+
+imgix does not require any padding characters at the end of the string, i.e. the typical `==\n` seen at the end of many base64 encoded strings.
+
+Here’s an example:
+
+```
+?txt=Hello,+World!
+```
+
+is isomorphic to
+
+```
+?txt64=SGVsbG8sIFdvcmxkIQ
+```
+
+Both of these will overlay "Hello, World!" onto an image using the imgix [`txt` parameter](https://docs.imgix.com/apis/url/text/txt).
+
+When writing libraries, a recommended practice is to transform parameters with problematic encodings into their base64 variants. For example, if a library is given a `mark` parameter, it is considered a best practice to encode that into a `mark64` parameter in the final URL.
+
+Let's see how that works in Ruby:
+
+```ruby
+client = Imgix::Client.new(host: 'static.imgix.net')
+client.path('base.png').to_url(mark: 'https://assets.imgix.net/logo.png')
+# => "https://static.imgix.net/base.png?mark64=aHR0cHM6Ly9hc3NldHMuaW1naXgubmV0L2xvZ28ucG5n"
+```
+
+This pattern helps ensure that the users of your libraries never encounter encoding issues while generate imgix URLs.
+
 ### Examples
 
 The following are a few examples for securing URLs, which library authors should use as a spot check:
