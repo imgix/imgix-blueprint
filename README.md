@@ -155,6 +155,13 @@ client.path('base.png').to_url(mark: 'https://assets.imgix.net/logo.png')
 
 This pattern helps ensure that the users of your libraries never encounter encoding issues while generating imgix URLs.
 
+We recommend Base64 encoding the following parameters by default:
+
+- [`mark`](https://docs.imgix.com/apis/url/watermark/mark)
+- [`blend`](https://docs.imgix.com/apis/url/blending/blend)
+- [`txt`](https://docs.imgix.com/apis/url/text/txt)
+- [`txtfont`](https://docs.imgix.com/apis/url/text/txtfont)
+
 ### Examples
 
 The following are a few examples for securing URLs, which library authors should use as a spot check:
