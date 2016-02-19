@@ -153,7 +153,7 @@ client.path('base.png').to_url(mark: 'https://assets.imgix.net/logo.png')
 # => "https://static.imgix.net/base.png?mark64=aHR0cHM6Ly9hc3NldHMuaW1naXgubmV0L2xvZ28ucG5n"
 ```
 
-This pattern helps ensure that the users of your libraries never encounter encoding issues while generate imgix URLs.
+This pattern helps ensure that the users of your libraries never encounter encoding issues while generating imgix URLs.
 
 ### Examples
 
