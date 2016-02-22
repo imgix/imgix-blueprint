@@ -117,7 +117,7 @@ If the library is passed any parameter ending in `64`, it should automatically e
 https://my-social-network.imgix.net/users/1.png?txt64=dGhpcy9zZWVtc-KApiBwcmV0dHkgc2tldGNoeSEg8J-YgQ
 ```
 
-If working in JavaScript, it's important to note that the built-in `atob` and `btoa` methods are not URL safe, and only support [Latin-1](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)) characters. Because of these limitations, it may be useful to use a third-party tool for encoding and decoding base64 in JavaScript, such as [js-base64's](https://github.com/dankogai/js-base64) `Base64.encodeURI` method.
+If working in JavaScript, it's important to note that the built-in `atob` and `btoa` methods are not URL safe, and only support [Latin-1](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)) characters. Because of these limitations, it may be useful to use a third-party tool for encoding and decoding Base64 in JavaScript, such as [js-base64's](https://github.com/dankogai/js-base64) `Base64.encodeURI` method.
 
 
 ## Securing URLs
