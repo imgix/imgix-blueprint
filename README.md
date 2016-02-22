@@ -103,6 +103,23 @@ The library should then generate:
 https://my-social-network.imgix.net/users/1.png?w=400&h=300
 ```
 
+### Parameter Encoding
+
+All parameters and their values should be URI encoded before generating the output URL. This helps avoid encoding errors, as well as potential XSS vulnerabilities when dealing with user-generated content. If the library is passed an image URL of `users/1.png` and a parameter of `hello world` with a value of `this/seems… pretty sketchy! 😁`, it should generate the following url:
+
+```
+https://my-social-network.imgix.net/users/1.png?hello%20world=this%2Fseems%E2%80%A6%20pretty%20sketchy!%20%F0%9F%98%81
+```
+
+If the library is passed any parameter ending in `64`, it should automatically encode that parameter's value as a Base64 string as described in the [Base64 encode problematic parameters](#base64-encode-problematic-parameters) section of this document. For example, the same user image as above with the `txt64` parameter and value `this/seems… pretty sketchy! 😁` should result in the following URL:
+
+```
+https://my-social-network.imgix.net/users/1.png?txt64=dGhpcy9zZWVtc-KApiBwcmV0dHkgc2tldGNoeSEg8J-YgQ
+```
+
+If working in JavaScript, it's important to note that the built-in `atob` and `btoa` methods are not URL safe, and only support [Latin-1](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)) characters. Because of these limitations, it may be useful to use a third-party tool for encoding and decoding base64 in JavaScript, such as [js-base64's](https://github.com/dankogai/js-base64) `Base64.encodeURI` method.
+
+
 ## Securing URLs
 
 imgix recommends securing all URLs, although it is not required for Amazon S3 and Web Folder Sources. Securing URLs prevents others from using one of your Sources maliciously, say to use your imgix Source as a CDN for a separate site.
@@ -123,6 +140,7 @@ Here are the following definitions of each variable in the above example:
 - `path`: The path of component of the final imgix URL including the leading slash, e.g. `/users/1.png` or `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`.  Special characters in the path (for example UTF-8 encoded codepoints) must remain percent encoded.
 - `query`: The query string of the imgix URL parameters, leading with the `?`, e.g. `?w=400&h=300`. If there are no query parameters, this should be left out of the signature base.
 
+<a name="base64-encode-problematic-parameters"></a>
 ## Base64 encode problematic parameters
 
 When dealing with complex inputs, encoding can be difficult to deal with and implement. Because of this, imgix recommends using the Base64 variants of parameters. Every parameter in imgix has a Base64 alias, which allows the values to be encoded using the 'base64url' encoding with URL and filename safe alphabet ([RFC 4648](https://en.wikipedia.org/wiki/Base64#RFC_4648)). These parameters are keyed by appending `64` to the end of the parameter name. Thus `txt` becomes `txt64`.
@@ -135,7 +153,7 @@ Here’s an example:
 ?txt=Hello,+World!
 ```
 
-is isomorphic to
+is the same as
 
 ```
 ?txt64=SGVsbG8sIFdvcmxkIQ
