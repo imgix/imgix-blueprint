@@ -151,9 +151,9 @@ Here are the following definitions of each variable in the above example:
 <a name="base64-encode-problematic-parameters"></a>
 ## Base64 encode problematic parameters
 
-When dealing with complex inputs, encoding can be difficult to deal with and implement. Because of this, imgix recommends using the Base64 variants of parameters. Every parameter in imgix has a Base64 alias, which allows the values to be encoded using the "base64url" encoding with URL and filename safe alphabet ([RFC 4648](https://en.wikipedia.org/wiki/Base64#RFC_4648)). These parameters are keyed by appending `64` to the end of the parameter name. Thus `txt` becomes `txt64`. When consuming a library, it will almost always be best to use the Base64 variant of the `mark`, `blend`, `txt`, and `txtfont` parameters.
+When dealing with complex inputs, encoding can be difficult to deal with and implement. To help with this, very parameter in imgix has a Base64 alias, which allows the values to be encoded using the "base64url" encoding with URL and filename safe alphabet ([RFC 4648](https://en.wikipedia.org/wiki/Base64#RFC_4648)). These parameters are keyed by appending `64` to the end of the parameter name. Thus `txt` becomes `txt64`.
 
-imgix requires that any padding characters in the resulting Base64 string (equals signs and newlines [`=` and `\n`]) are removed.
+When writing libraries, the output of any value passed to a parameter ending in `64` must be "base64url" encoded, with any padding characters (equals signs and newlines [`=`, `\n`]) removed.
 
 Here’s an example:
 
@@ -169,19 +169,17 @@ is the same as
 
 Both of these will overlay "Hello, World!" onto an image using the imgix [`txt` parameter](https://docs.imgix.com/apis/url/text/txt).
 
-When writing libraries, the output of any value passed to a parameter ending in `64` must be "base64url" encoded, with any trailing equals signs (`=`) removed.
-
 Let's see how that works in Ruby:
 
 ```ruby
 client = Imgix::Client.new(host: 'static.imgix.net')
-client.path('base.png').to_url(mark: 'https://assets.imgix.net/logo.png')
+client.path('base.png').to_url(mark64: 'https://assets.imgix.net/logo.png')
 # => "https://static.imgix.net/base.png?mark64=aHR0cHM6Ly9hc3NldHMuaW1naXgubmV0L2xvZ28ucG5n"
 ```
 
 This pattern helps ensure that the users of your libraries never encounter encoding issues while generating imgix URLs.
 
-We recommend Base64 encoding the following parameters by default:
+When consuming a library, imgix recommends always using the Base64 variant of the following parameters:
 
 - [`mark`](https://docs.imgix.com/apis/url/watermark/mark)
 - [`blend`](https://docs.imgix.com/apis/url/blending/blend)
