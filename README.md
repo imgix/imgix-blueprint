@@ -2,6 +2,7 @@
 
 A blueprint for creating an imgix library in any language.
 
+
 ## About
 
 This document is meant to serve as a resource for implementing native libraries for use with the [imgix URL API](https://www.imgix.com/docs/reference). Almost all libraries in their individual languages have a set of similar concerns: the library must be able to build imgix URLs, [secure imgix URLs](https://www.imgix.com/docs/tutorials/securing-images), and handle the corner cases that result.
@@ -32,9 +33,11 @@ If you have an imgix library that you would like included here, please [open a P
 
 There is a complete list of libraries (including framework-specific libraries) in [the imgix documentation](https://www.imgix.com/docs/libraries).
 
+
 ## Naming
 
 If it is idiomatic for the language, we recommend naming each library `"imgix-" + language_name`, e.g. `imgix-rb` or `imgix-php`.
+
 
 ## Versioning
 
@@ -56,6 +59,7 @@ A given imgix library should be able to turn that into:
 https://my-social-network.imgix.net/users/1.png
 ```
 
+
 ## Protocols
 
 imgix recommends using the HTTP over TLS (https:) in all cases. All imgix sources are HTTPS-enabled.
@@ -66,6 +70,7 @@ See:
 
 - [The Protocol-relative URL](http://www.paulirish.com/2010/the-protocol-relative-url/), Paul Irish
 - [Is TLS Fast Yet?](https://istlsfastyet.com/), Ilya Grigorik
+
 
 ## Web Proxy Sources
 
@@ -87,7 +92,8 @@ https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png
 
 **Note**: Web Proxy URLs will also need to be signed. Please see the [Securing URLs section below](#securing-urls).
 
-## URL parameters
+
+## URL Parameters
 
 The imgix URL API is a powerful way to manipulate images. The primary method of doing this is the [extensive set of URL parameters](https://www.imgix.com/docs/reference). These URL parameters are able to change the size, crop, file format, and much more.
 
@@ -102,6 +108,25 @@ The library should then generate:
 ```
 https://my-social-network.imgix.net/users/1.png?w=400&h=300
 ```
+
+### Parameter Encoding
+
+All parameters and their values should be URI encoded before generating the output URL. This helps avoid encoding errors, as well as potential XSS vulnerabilities when dealing with user-generated content. If the library is passed an image URL of `users/1.png` and a parameter of `hello world` with a value of `this/seems… pretty sketchy! 😁`, it should generate the following url:
+
+```
+https://my-social-network.imgix.net/users/1.png?hello%20world=this%2Fseems%E2%80%A6%20pretty%20sketchy!%20%F0%9F%98%81
+```
+
+If the library is passed any parameter ending in `64`, it should automatically encode that parameter's value as a Base64 string as described in the [Base64 encode problematic parameters](#base64-encode-problematic-parameters) section of this document. For example, the same user image as above with the `txt64` parameter and value `this/seems… pretty sketchy! 😁` should result in the following URL:
+
+```
+https://my-social-network.imgix.net/users/1.png?txt64=dGhpcy9zZWVtc-KApiBwcmV0dHkgc2tldGNoeSEg8J-YgQ
+```
+
+If working in JavaScript, it's important to note that the built-in `atob` and `btoa` methods are not URL safe, and only support [Latin-1](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)) characters. Because of these limitations, it may be useful to use a third-party tool for encoding and decoding Base64 in JavaScript, such as [js-base64's](https://github.com/dankogai/js-base64) `Base64.encodeURI` method.
+
+All parameters and values passed to the library must be unencoded.
+
 
 ## Securing URLs
 
@@ -122,6 +147,44 @@ Here are the following definitions of each variable in the above example:
 - `token`: The alphanumeric Secure URL Token pertaining to the specific Source. It can be found in the [imgix web dashboard](https://webapp.imgix.com/source).
 - `path`: The path of component of the final imgix URL including the leading slash, e.g. `/users/1.png` or `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`.  Special characters in the path (for example UTF-8 encoded codepoints) must remain percent encoded.
 - `query`: The query string of the imgix URL parameters, leading with the `?`, e.g. `?w=400&h=300`. If there are no query parameters, this should be left out of the signature base.
+
+<a name="base64-encode-problematic-parameters"></a>
+## Base64 encode problematic parameters
+
+When dealing with complex inputs, encoding can be difficult to deal with and implement. To help with this, very parameter in imgix has a Base64 alias, which allows the values to be encoded using the "base64url" encoding with URL and filename safe alphabet ([RFC 4648](https://en.wikipedia.org/wiki/Base64#RFC_4648)). These parameters are keyed by appending `64` to the end of the parameter name. Thus `txt` becomes `txt64`.
+
+When writing libraries, the output of any value passed to a parameter ending in `64` must be "base64url" encoded, with any padding characters (equals signs and newlines [`=`, `\n`]) removed.
+
+Here’s an example:
+
+```
+?txt=Hello,+World!
+```
+
+is the same as
+
+```
+?txt64=SGVsbG8sIFdvcmxkIQ
+```
+
+Both of these will overlay "Hello, World!" onto an image using the imgix [`txt` parameter](https://docs.imgix.com/apis/url/text/txt).
+
+Let's see how that works in Ruby:
+
+```ruby
+client = Imgix::Client.new(host: 'static.imgix.net')
+client.path('base.png').to_url(mark64: 'https://assets.imgix.net/logo.png')
+# => "https://static.imgix.net/base.png?mark64=aHR0cHM6Ly9hc3NldHMuaW1naXgubmV0L2xvZ28ucG5n"
+```
+
+This pattern helps ensure that the users of your libraries never encounter encoding issues while generating imgix URLs.
+
+When consuming a library, imgix recommends always using the Base64 variant of the following parameters:
+
+- [`mark`](https://docs.imgix.com/apis/url/watermark/mark)
+- [`blend`](https://docs.imgix.com/apis/url/blending/blend)
+- [`txt`](https://docs.imgix.com/apis/url/text/txt)
+- [`txtfont`](https://docs.imgix.com/apis/url/text/txtfont)
 
 ### Examples
 
