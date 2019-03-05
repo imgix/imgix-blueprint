@@ -117,7 +117,7 @@ All parameters and their values should be URI encoded before generating the outp
 https://my-social-network.imgix.net/users/1.png?hello%20world=this%2Fseems%E2%80%A6%20pretty%20sketchy!%20%F0%9F%98%81
 ```
 
-If the library is passed any parameter ending in `64`, it should automatically encode that parameter's value as a Base64 string as described in the [Base64 encode problematic parameters](#base64-encode-problematic-parameters) section of this document. For example, the same user image as above with the `txt64` parameter and value `this/seems… pretty sketchy! 😁` should result in the following URL:
+If the library is passed any parameter ending in `64`, it should automatically encode that parameter's value as an RFC4648 "base64url" string as described in the [base64url encode problematic parameters](#base64url-encode-problematic-parameters) section of this document. For example, the same user image as above with the `txt64` parameter and value `this/seems… pretty sketchy! 😁` should result in the following URL:
 
 ```
 https://my-social-network.imgix.net/users/1.png?txt64=dGhpcy9zZWVtc-KApiBwcmV0dHkgc2tldGNoeSEg8J-YgQ
@@ -148,8 +148,8 @@ Here are the following definitions of each variable in the above example:
 - `path`: The path of component of the final imgix URL including the leading slash, e.g. `/users/1.png` or `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`.  Special characters in the path (for example UTF-8 encoded codepoints) must remain percent encoded.
 - `query`: The query string of the imgix URL parameters, leading with the `?`, e.g. `?w=400&h=300`. If there are no query parameters, this should be left out of the signature base.
 
-<a name="base64-encode-problematic-parameters"></a>
-## Base64 encode problematic parameters
+<a name="base64url-encode-problematic-parameters"></a>
+## base64url encode problematic parameters
 
 When dealing with complex inputs, encoding can be difficult to properly implement. To help with this, almost every parameter in imgix has a Base64 alias, which allows the values to be encoded using the "base64url" encoding with a URL and filename safe alphabet ([RFC 4648](https://en.wikipedia.org/wiki/Base64#RFC_4648)). These parameters are keyed by appending `64` to the end of the parameter name. Thus `txt` becomes `txt64`.
 
