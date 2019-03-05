@@ -151,9 +151,9 @@ Here are the following definitions of each variable in the above example:
 <a name="base64-encode-problematic-parameters"></a>
 ## Base64 encode problematic parameters
 
-When dealing with complex inputs, encoding can be difficult to deal with and implement. To help with this, every parameter in imgix has a Base64 alias, which allows the values to be encoded using the "base64url" encoding with URL and filename safe alphabet ([RFC 4648](https://en.wikipedia.org/wiki/Base64#RFC_4648)). These parameters are keyed by appending `64` to the end of the parameter name. Thus `txt` becomes `txt64`.
+When dealing with complex inputs, encoding can be difficult to properly implement. To help with this, almost every parameter in imgix has a Base64 alias, which allows the values to be encoded using the "base64url" encoding with a URL and filename safe alphabet ([RFC 4648](https://en.wikipedia.org/wiki/Base64#RFC_4648)). These parameters are keyed by appending `64` to the end of the parameter name. Thus `txt` becomes `txt64`.
 
-It is extremely important to note that traditional Base64 encoding and Base64 urlsafe encoding are not interchangeable.  Encoding parameter values as regular Base64 WILL cause your requests to fail.
+Please note that, per RFC 4648, "base64" and "base64url" encodings are not interchangeable.  Many libraries only implement "base64" encoding.  Encoding parameter values using "base64" encoding WILL cause your requests to fail ... be sure you check for and know the difference!
 
 When writing libraries, the output of any value passed to a parameter ending in `64` must be "base64url" encoded, with any padding characters (equals signs and newlines [`=`, `\n`]) removed.
 
