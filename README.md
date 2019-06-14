@@ -132,7 +132,11 @@ All parameters and values passed to the library must be unencoded.
 
 imgix recommends securing all URLs, although it is not required for Amazon S3 and Web Folder Sources. Securing URLs prevents others from using one of your Sources maliciously, say to use your imgix Source as a CDN for a separate site.
 
-imgix URL signatures are represented by the special `s` parameter.  The value is an MD5 hash of the data pertaining to the URL itself and the imgix Source. Note that the hash value must be in lowercase hex. In a secured imgix URL, the `s` parameter **must** be the last parameter.
+imgix URL signatures are represented by the special `s` parameter.  The value is an MD5 hash of the data pertaining to the URL itself and the imgix Source.
+
+- The hash value **must** be in lowercase hex.
+- MD5 hashes represented in hex **must** be exactly 32 characters ... no more and no less.
+- In a secured imgix URL, the `s` parameter **must** be the last parameter.
 
 This parameter is generated as follows in Ruby:
 
