@@ -24,7 +24,6 @@ Official libraries exist in the following languages:
 Unofficial libraries are available in the following languages:
 
 - [C#](https://github.com/raynjamin/Imgix-CSharp)
-- [Go](https://github.com/parkr/imgix-go)
 - [Objective-C](https://github.com/soffes/imgix-objc)
 - [Swift](https://www.github.com/hodinkee/iris)
 - [Elixir](https://github.com/ianwalter/imgex)
