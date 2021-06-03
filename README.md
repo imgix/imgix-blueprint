@@ -21,11 +21,11 @@ Official libraries exist in the following languages:
 - [Python](https://github.com/imgix/imgix-python)
 - [Ruby](https://github.com/imgix/imgix-rb)
 - [Go](https://github.com/imgix/imgix-go)
+- [Swift](https://github.com/imgix/imgix-swift)
+- [C#](https://github.com/imgix/imgix-csharp)
 Unofficial libraries are available in the following languages:
 
-- [C#](https://github.com/raynjamin/Imgix-CSharp)
 - [Objective-C](https://github.com/soffes/imgix-objc)
-- [Swift](https://www.github.com/hodinkee/iris)
 - [Elixir](https://github.com/ianwalter/imgex)
 
 If you have an imgix library that you would like included here, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
