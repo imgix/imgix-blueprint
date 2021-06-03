@@ -20,7 +20,7 @@ Official libraries exist in the following languages:
 - [PHP](https://github.com/imgix/imgix-php)
 - [Python](https://github.com/imgix/imgix-python)
 - [Ruby](https://github.com/imgix/imgix-rb)
-
+- [Go](https://github.com/imgix/imgix-go)
 Unofficial libraries are available in the following languages:
 
 - [C#](https://github.com/raynjamin/Imgix-CSharp)
