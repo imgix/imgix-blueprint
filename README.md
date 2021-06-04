@@ -2,7 +2,6 @@
 
 A blueprint for creating an imgix library in any language.
 
-
 ## About
 
 This document is meant to serve as a resource for implementing native libraries for use with the [imgix URL API](https://www.imgix.com/docs/reference). Almost all libraries in their individual languages have a set of similar concerns: the library must be able to build imgix URLs, [secure imgix URLs](https://docs.imgix.com/setup/securing-images), and handle the corner cases that result.
@@ -23,6 +22,7 @@ Official libraries exist in the following languages:
 - [Go](https://github.com/imgix/imgix-go)
 - [Swift](https://github.com/imgix/imgix-swift)
 - [C#](https://github.com/imgix/imgix-csharp)
+
 Unofficial libraries are available in the following languages:
 
 - [Elixir](https://github.com/ianwalter/imgex)
@@ -30,7 +30,6 @@ Unofficial libraries are available in the following languages:
 If you have an imgix library that you would like included here, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
 
 There is a complete list of libraries (including framework-specific libraries) in [the imgix documentation](https://www.imgix.com/docs/libraries).
-
 
 ## Naming
 
@@ -57,7 +56,6 @@ A given imgix library should be able to turn that into:
 https://my-social-network.imgix.net/users/1.png
 ```
 
-
 ## Protocols
 
 imgix recommends using the HTTP over TLS (https:) in all cases. All imgix sources are HTTPS-enabled.
@@ -68,7 +66,6 @@ See:
 
 - [The Protocol-relative URL](http://www.paulirish.com/2010/the-protocol-relative-url/), Paul Irish
 - [Is TLS Fast Yet?](https://istlsfastyet.com/), Ilya Grigorik
-
 
 ## Web Proxy Sources
 
@@ -89,7 +86,6 @@ https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png
 ```
 
 **Note**: Web Proxy URLs will also need to be signed. Please see the [Securing URLs section below](#securing-urls).
-
 
 ## URL Parameters
 
@@ -124,7 +120,6 @@ https://my-social-network.imgix.net/users/1.png?txt64=dGhpcy9zZWVtc-KApiBwcmV0dH
 If working in JavaScript, it's important to note that the built-in `atob` and `btoa` methods are not URL safe, and only support [Latin-1](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)) characters. Because of these limitations, it may be useful to use a third-party tool for encoding and decoding Base64 in JavaScript, such as [js-base64's](https://github.com/dankogai/js-base64) `Base64.encodeURI` method.
 
 All parameters and values passed to the library must be unencoded.
-
 
 ## Securing URLs
 
