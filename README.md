@@ -5,18 +5,18 @@ A blueprint for creating an imgix library in any language.
 
 ## About
 
-This document is meant to serve as a resource for implementing native libraries for use with the [imgix URL API](https://www.imgix.com/docs/reference). Almost all libraries in their individual languages have a set of similar concerns: the library must be able to build imgix URLs, [secure imgix URLs](https://www.imgix.com/docs/tutorials/securing-images), and handle the corner cases that result.
+This document is meant to serve as a resource for implementing native libraries for use with the [imgix URL API](https://www.imgix.com/docs/reference). Almost all libraries in their individual languages have a set of similar concerns: the library must be able to build imgix URLs, [secure imgix URLs](https://docs.imgix.com/setup/securing-images), and handle the corner cases that result.
 
 This document will not cover framework-level integrations in different languages. This document is primarily concerned with building imgix API URLs reliably.
 
-imgix cares very much about providing first-class, idiomatic support for as many languages as possible. If you create a library for a language that is not supported, please [get in touch](mailto:support@imgix.com) if you would like it to be supported officially.
+imgix cares very much about providing first-class, idiomatic support for as many languages as possible. If you create a library for a language that is not supported, please [get in touch](mailto:sdk@imgix.com) if you would like it to be supported officially.
 
 ## Existing Libraries
 
 Official libraries exist in the following languages:
 
 - [Java](https://github.com/imgix/imgix-java)
-- [NodeJS](https://github.com/imgix/imgix-core-js)
+- [NodeJS](https://github.com/imgix/js-core)
 - [PHP](https://github.com/imgix/imgix-php)
 - [Python](https://github.com/imgix/imgix-python)
 - [Ruby](https://github.com/imgix/imgix-rb)
@@ -25,7 +25,6 @@ Official libraries exist in the following languages:
 - [C#](https://github.com/imgix/imgix-csharp)
 Unofficial libraries are available in the following languages:
 
-- [Objective-C](https://github.com/soffes/imgix-objc)
 - [Elixir](https://github.com/ianwalter/imgex)
 
 If you have an imgix library that you would like included here, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
@@ -147,7 +146,7 @@ Digest::MD5.hexdigest(signature_base)
 
 Here are the following definitions of each variable in the above example:
 
-- `token`: The alphanumeric Secure URL Token pertaining to the specific Source. It can be found in the [imgix web dashboard](https://webapp.imgix.com/source).
+- `token`: The alphanumeric Secure URL Token pertaining to the specific Source. It can be found in the [imgix web dashboard](https://dashboard.imgix.com/sources).
 - `path`: The path of component of the final imgix URL including the leading slash, e.g. `/users/1.png` or `/http%3A%2F%2Favatars.com%2Fjohn-smith.png`.  Special characters in the path (for example UTF-8 encoded codepoints) must remain percent encoded.
 - `query`: The query string of the imgix URL parameters, leading with the `?`, e.g. `?w=400&h=300`. If there are no query parameters, this should be left out of the signature base.
 
