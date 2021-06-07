@@ -1,4 +1,6 @@
 # imgix-blueprint
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fimgix%2Fimgix-blueprint.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fimgix%2Fimgix-blueprint?ref=badge_shield)
+
 
 A blueprint for creating an imgix library in any language.
 
@@ -287,3 +289,7 @@ Or if your language likes to alphabetize parameters:
 ```
 https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png?h=300&w=400&s=a201fe1a3caef4944dcb40f6ce99e746
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fimgix%2Fimgix-blueprint.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fimgix%2Fimgix-blueprint?ref=badge_large)
