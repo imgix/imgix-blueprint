@@ -26,7 +26,7 @@ Official libraries exist in the following languages:
 Unofficial libraries are available in the following languages:
 
 - [Elixir](https://github.com/ianwalter/imgex)
-- [Dart](https://pub.dev/packages/imgix_core_dart)
+- [Dart](https://github.com/Nikkei/imgix_core_dart)
 
 If you have an imgix library that you would like included here, please [open a Pull Request](https://github.com/imgix/imgix-blueprint/pulls).
 
